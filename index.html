@@ -216,17 +216,19 @@
         const resultText = document.getElementById('resultText');
         
         const segments = [
-            'Share 3-5 pics of some favorite moments from past 2 years',
+            'Share 3-10 pics of some favorite moments from past 2 years',
+            'What, do you feel, is a common misperception about you?',
             'Make a 30s music video using only facial muscles for dancing',
-            'Recount a time when laughed extremely hard',
+            'Recount a time when laughed unreasonably hard',
             'Share a pic + explanation of your favorite part of/thing in your house',
             'Share one or more quirks about how you were raised/where you grew up',
+            'W/ ur game partner, see who can take the silliest photo in the next 48 hrs',
             'In a silly voice, read a haiku about something that frustrated you today',
-            'What is a far-out job you think you might have had in another life?',
+            'What is a far-out job you think you might have had in another life? Why?',
             "What is a trait that you appreciate in your self?",
             "Who is the goofiest member of your family? In what way(s) are they goofy?",
-            "Share a photo of of inside your fridge—point out/at your fav thing",
-            "Share a pic of yourself in some form of goofy apparel",
+            "Share a photo of of inside your fridge—what is your favorite item and why?",
+            "Share a pic of yourself in some form of costume or goofy apparel",
         ];
         
         // Colors for the segments (will cycle if more segments than colors)
@@ -317,7 +319,7 @@
                 
                 // Dynamic font sizing based on text length and number of segments
                 const textLength = segments[i].length;
-                const baseFontSize = Math.max(8, 23 - numSegments); // Base size decreases with more segments
+                const baseFontSize = Math.max(8, 27 - numSegments); // Base size decreases with more segments
                 const lengthPenalty = Math.max(0, textLength - 30) * 0.1; // Reduce size for long text
                 const dynamicFontSize = Math.max(6, baseFontSize - lengthPenalty);
                 
