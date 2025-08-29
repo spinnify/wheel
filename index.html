@@ -319,7 +319,7 @@
                 
                 // Dynamic font sizing based on text length and number of segments
                 const textLength = segments[i].length;
-                const baseFontSize = Math.max(8, 27 - numSegments); // Base size decreases with more segments
+                const baseFontSize = Math.max(8, 25 - numSegments); // Base size decreases with more segments
                 const lengthPenalty = Math.max(0, textLength - 30) * 0.1; // Reduce size for long text
                 const dynamicFontSize = Math.max(6, baseFontSize - lengthPenalty);
                 
