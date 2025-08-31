@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin the Wheel</title>
+    <title>Textquests</title>
     <style>
         * {
             margin: 0;
@@ -103,15 +103,26 @@
             background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
             border: none;
             border-radius: 50px;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 12px 16px;
+            font-size: 1rem;
+            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
             font-weight: bold;
-            color: white;
+            color: #e8eaf6;
+            text-shadow: 
+                2px 2px 0px #0000008a,
+                -1px -1px 0px #0000008a,
+                1px -1px 0px #0000008a,
+                -1px 1px 0px #0000008a,
+                3px 3px 5px rgba(0,0,0,0.5);
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: inline-block;
+            width: auto;
+            min-width: fit-content;
+            box-sizing: border-box;
         }
 
         .spin-button:hover {
@@ -163,8 +174,8 @@
             }
 
             .spin-button {
-                padding: 12px 30px;
-                font-size: 1rem;
+                padding: 10px 16px;
+                font-size: 0.9rem;
             }
 
             .result-text {
@@ -191,10 +202,275 @@
         .spinning {
             pointer-events: none;
         }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 2.1rem;
+            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 
+                2px 2px 0px #000,
+                -1px -1px 0px #000,
+                1px -1px 0px #000,
+                -1px 1px 0px #000,
+                3px 3px 5px rgba(0,0,0,0.5);
+            color: #e8eaf6;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            background: linear-gradient(45deg, rgba(255,235,59,0.1), rgba(255,193,7,0.1));
+            display: inline-block;
+        }
+
+        .page-subtitle {
+            font-size: 0.8rem;
+            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-weight: 300;
+            opacity: 0.85;
+            color: #e8eaf6;
+            letter-spacing: 0.5px;
+            font-style: normal;
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.8rem;
+                padding: 6px 12px;
+                letter-spacing: 1.5px;
+            }
+            
+            .page-subtitle {
+                font-size: 0.7rem;
+                letter-spacing: 0.4px;
+            }
+            
+            .page-header {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .page-title {
+                font-size: 1.5rem;
+                padding: 4px 8px;
+                letter-spacing: 1px;
+            }
+            
+            .page-subtitle {
+                font-size: 0.6rem;
+                letter-spacing: 0.3px;
+            }
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 50px 30px 30px 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            animation: modalSlideIn 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7) translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            transition: all 0.2s ease;
+            font-weight: bold;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #e8eaf6;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            padding: 0 10px;
+        }
+
+        .modal-extra-info, .modal-bonus {
+            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.3;
+            opacity: 0.85;
+            margin-top: 15px;
+            padding: 0 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .copy-button {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .copy-button:hover {
+            background: linear-gradient(45deg, #45b7d1, #4ecdc4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+        }
+
+        .copy-button.copied {
+            background: linear-gradient(45deg, #96ceb4, #00b894);
+        }
+
+        /* Mobile modal adjustments */
+        @media (max-width: 480px) {
+            .modal {
+                padding: 45px 20px 25px 20px;
+                margin: 10px;
+                border-radius: 15px;
+                max-height: 70vh;
+            }
+
+            .copy-button {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+                margin-top: 15px;
+                min-width: 100px;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+
+            .modal-content {
+                font-size: 1.1rem;
+                padding: 0 5px;
+            }
+
+            .modal-extra-info, .modal-bonus {
+                font-size: 0.9rem;
+                margin-top: 12px;
+                padding: 0 5px;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .modal {
+                padding: 40px 15px 20px 15px;
+                margin: 5px;
+            }
+
+            .modal-title {
+                font-size: 1.2rem;
+            }
+
+            .modal-content {
+                font-size: 1rem;
+                padding: 0 5px;
+            }
+
+            .modal-extra-info, .modal-bonus {
+                font-size: 0.8rem;
+                margin-top: 10px;
+                padding: 0 5px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">TextQuests</h1>
+            <p class="page-subtitle">A game of easy and fun things to do over text!</p>
+        </div>
         <div class="wheel-container">
             <div class="wheel-pointer"></div>
             <div class="wheel" id="wheel">
@@ -204,31 +480,50 @@
         </div>
 
         <button class="spin-button" id="spinButton">Spin the Wheel!</button>
+    </div>
 
-        <div class="result">
-            <div class="result-text" id="resultText">Click the button to spin!</div>
+    <!-- Modal for quest results -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-content" id="modalContent"></div>
         </div>
     </div>
 
     <script>
         const wheel = document.getElementById('wheel');
         const spinButton = document.getElementById('spinButton');
-        const resultText = document.getElementById('resultText');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalContent = document.getElementById('modalContent');
+        const modalClose = document.getElementById('modalClose');
         
+        // Quest dataclass structure
+        class Quest {
+            constructor(emoji, description, extraInfo = null, bonus = null) {
+                this.emoji = emoji;
+                this.description = description;
+                this.extraInfo = extraInfo;
+                this.bonus = bonus;
+            }
+        }
+
         const segments = [
-            'Share 3-10 pics of some favorite moments from past 2 years',
-            'What, do you feel, is a common misperception about you?',
-            'Make a 30s music video using only facial muscles for dancing',
-            'Recount a time when laughed unreasonably hard',
-            'Share a pic + explanation of your favorite part of/thing in your house',
-            'Share one or more quirks about how you were raised/where you grew up',
-            'W/ ur game partner, see who can take the silliest photo in the next 48 hrs',
-            'In a silly voice, read a haiku about something that frustrated you today',
-            'What is a far-out job you think you might have had in another life? Why?',
-            "What is a trait that you appreciate in your self?",
-            "Who is the goofiest member of your family? In what way(s) are they goofy?",
-            "Share a photo of of inside your fridge—what is your favorite item and why?",
-            "Share a pic of yourself in some form of costume or goofy apparel",
+            new Quest('🗣️', 'What is some recent positive trend in your life that you are grateful for and why?'),
+            new Quest('📸', 'Share 3-10 pics of some favorite moments from past 2 years', null, "Share the backstories behind the photos."),
+            new Quest('🗣️', 'What, do you feel, is a common misperception about you?'),
+            new Quest('🎥', 'Make a 30-sec music video using only facial muscles for dancing', 'Play a fun song in the background and let whatever silly faces/face movements happen happen. 🤪'),
+            new Quest('🗣️', 'Recount a not-too-distant time when laughed unreasonably hard', null, 'How would you describe your sense of humor?'),
+            new Quest('🎷', 'Make/share a 5+ song playlist titled "[your name]-core"', 'E.g., if your name is Marge, you would make a playlist titled "Marge-core", with 5+ songs that capture your vibe/aesthetic.'),
+            new Quest('🗣️', 'Share a pic+explanation of your favorite part of/thing in your house', null, 'Generally, what is important to you in a living space?'),
+            new Quest('🗣️', 'Share one or more quirks/unique about how you were raised/where you grew up', null, "Bonus: Describe both a positive and negative aspect and/or describe how your relationship w/ the world is different as a result."),
+            new Quest('🎥', 'Share a video (youtube, camera roll, etc.) that brings you joy', 'Explain as needed.'),
+            new Quest('📸', 'W/ ur game partner, see who can take the silliest photo in the next 48hrs'),
+            new Quest('🗣️', 'Perform a haiku about something that frustrated you today', null, 'Do it in a silly voice!'),
+            new Quest('🗣️', 'Besides you, who is the goofiest member of your family/family group? In what way(s) are they goofy?', null, 'How does this compare/contrast to your flavor of goofiness?'),
+            new Quest('🎷', 'Make/share a 3+ song playlist titled "[your game partner\'s name]-core"', 'E.g., if your partner\'s name is Sam, you would make a playlist titled "Sam-core", with 3+ songs that you think capture their vibe/aesthetic.'),
+            new Quest('📸', 'Share a photo of the inside your fridge—what is your favorite item & why?', null, 'What is your least favorite item?'),
+            new Quest('📸', 'Share a pic of yourself in some form of costume or goofy apparel.', 'E.g., an old Halloween costume, funny sunglasses at the store, etc.', 'Take this photo in the next 48 hours.'),
+            new Quest('🎥', 'Share one or two memes/shorts that you find especially funny.'),
         ];
         
         // Colors for the segments (will cycle if more segments than colors)
@@ -304,7 +599,7 @@
                 // Create text element
                 const textElement = document.createElement('div');
                 textElement.className = 'segment-text';
-                textElement.textContent = segments[i];
+                textElement.textContent = segments[i].description;
                 
                 // Position text in the middle of the segment
                 const midAngle = startAngle + (anglePerSegment / 2);
@@ -318,8 +613,8 @@
                 textElement.style.transform = `translate(-50%, -50%) rotate(${midAngle}deg)`;
                 
                 // Dynamic font sizing based on text length and number of segments
-                const textLength = segments[i].length;
-                const baseFontSize = Math.max(8, 25 - numSegments); // Base size decreases with more segments
+                const textLength = segments[i].description.length;
+                const baseFontSize = Math.max(8, 27 - numSegments); // Base size decreases with more segments
                 const lengthPenalty = Math.max(0, textLength - 30) * 0.1; // Reduce size for long text
                 const dynamicFontSize = Math.max(6, baseFontSize - lengthPenalty);
                 
@@ -336,6 +631,20 @@
 
         // Initialize wheel on page load
         createWheel();
+        
+        // Match button width to title width for symmetry
+        function matchButtonWidth() {
+            const title = document.querySelector('.page-title');
+            const button = document.querySelector('.spin-button');
+            if (title && button) {
+                const titleWidth = title.offsetWidth;
+                button.style.width = titleWidth + 'px';
+            }
+        }
+        
+        // Set width on load and resize
+        window.addEventListener('load', matchButtonWidth);
+        window.addEventListener('resize', matchButtonWidth);
 
         spinButton.addEventListener('click', spinWheel);
 
@@ -345,11 +654,10 @@
             isSpinning = true;
             spinButton.disabled = true;
             spinButton.textContent = 'Spinning...';
-            resultText.textContent = 'The wheel is spinning...';
             
             // Generate random spin (3-6 full rotations + random angle)
-            const minSpins = 3;
-            const maxSpins = 6;
+            const minSpins = 2;
+            const maxSpins = 5;
             const spins = Math.random() * (maxSpins - minSpins) + minSpins;
             const finalAngle = Math.random() * 360;
             const totalRotation = (spins * 360) + finalAngle;
@@ -364,11 +672,14 @@
                 const normalizedAngle = (360 - (currentRotation % 360)) % 360;
                 const segmentAngle = 360 / segments.length;
                 const segmentIndex = Math.floor(normalizedAngle / segmentAngle);
-                const result = segments[segmentIndex];
+                const selectedQuest = segments[segmentIndex];
                 
-                resultText.textContent = `🎉 ${result}`;
+                // Show result in modal
+                showResultModal(selectedQuest);
+                
+                // Reset button state
                 spinButton.disabled = false;
-                spinButton.textContent = 'Spin Again!';
+                spinButton.textContent = 'Spin the Wheel!';
                 isSpinning = false;
                 
                 // Add a little celebration effect
@@ -411,6 +722,105 @@
                 document.body.removeChild(confettiPiece);
             }, 3000);
         }
+
+        // Modal functions
+        function showResultModal(quest) {
+            let modalHTML = `<div class="modal-content">${quest.emoji} ${quest.description}</div>`;
+            
+            if (quest.extraInfo) {
+                modalHTML += `<div class="modal-extra-info">ℹ️ ${quest.extraInfo}</div>`;
+            }
+            
+            if (quest.bonus) {
+                modalHTML += `<div class="modal-bonus">BONUS: ${quest.bonus}</div>`;
+            }
+            
+            modalHTML += `<button class="copy-button" onclick="copyQuestText('${quest.emoji}', \`${quest.description.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`, ${quest.extraInfo ? `\`${quest.extraInfo.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`` : 'null'}, ${quest.bonus ? `\`${quest.bonus.replace(/`/g, '\\`').replace(/'/g, "\\'")}\`` : 'null'})">Copy Prompt</button>`;
+            
+            modalContent.innerHTML = modalHTML;
+            modalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function hideResultModal() {
+            modalOverlay.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function copyQuestText(emoji, description, extraInfo, bonus) {
+            let formattedText = `My prompt was:\n\n${emoji} ${description}`;
+            
+            if (extraInfo) {
+                formattedText += `\n\nℹ️ ${extraInfo}`;
+            }
+            
+            if (bonus) {
+                formattedText += `\n\n${bonus}`;
+            }
+            
+            // Use the modern clipboard API if available
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(formattedText).then(() => {
+                    showCopyFeedback();
+                }).catch((err) => {
+                    console.error('Failed to copy text: ', err);
+                    fallbackCopyText(formattedText);
+                });
+            } else {
+                // Fallback for older browsers or non-secure contexts
+                fallbackCopyText(formattedText);
+            }
+        }
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopyFeedback();
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+                alert('Copy failed. Please manually select and copy the text.');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showCopyFeedback() {
+            const copyButton = document.querySelector('.copy-button');
+            if (copyButton) {
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                    copyButton.classList.remove('copied');
+                }, 2000);
+            }
+        }
+
+        // Modal event listeners
+        modalClose.addEventListener('click', hideResultModal);
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                hideResultModal();
+            }
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('show')) {
+                hideResultModal();
+            }
+        });
 
         // Touch feedback for mobile
         spinButton.addEventListener('touchstart', function() {
