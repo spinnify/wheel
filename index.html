@@ -85,14 +85,14 @@
 
         .wheel-pointer {
             position: absolute;
-            top: -10px;
+            top: -8px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 25px solid #fff;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 20px solid #fff;
             z-index: 10;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
@@ -305,7 +305,7 @@
             padding: 50px 30px 30px 30px;
             max-width: 500px;
             width: 100%;
-            max-height: 88vh;
+            max-height: 93vh;
             overflow-y: auto;
             position: relative;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -519,6 +519,16 @@
             padding: 0 10px;
         }
 
+        /* Copyright text styling */
+        .copyright-text {
+            display: block;
+            font-size: 0.6rem;
+            opacity: 0.5;
+            margin-top: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
         /* Mobile adjustments for info button */
         @media (max-width: 480px) {
             .info-button {
@@ -591,6 +601,11 @@
             .info-modal-content {
                 font-size: 0.75rem;
             }
+
+            .copyright-text {
+                font-size: 0.55rem;
+                margin-top: 12px;
+            }
         }
 
         @media (max-width: 320px) {
@@ -624,6 +639,11 @@
 
             .info-modal-content {
                 font-size: 0.7rem;
+            }
+
+            .copyright-text {
+                font-size: 0.5rem;
+                margin-top: 10px;
             }
         }
     </style>
@@ -677,11 +697,12 @@
 
         let howToPlay = '💁 How to play:\n\n📱💬 ⏳🤷\n✨ TextQuests ✨ is played asynchronously with a partner over text.\n\n';
         howToPlay += '👤 🔄 👤🎯\nPlayers take turns completing short, accessible challenges (quests) designed to be silly, reflective, or otherwise fun!\n\n';
-        howToPlay += '🎲👈👉🤔✅\nPlayers can either spin the wheel to receive quest assignments or manually choose them by clicking on wheel segments and selecting their preferences.';
+        howToPlay += '🎲👈👉🤔✅\nPlayers can either (1) spin the wheel to receive quest assignments or (2) choose them manually by clicking on wheel segments and selecting their preferences.\n\n';
+        howToPlay += 'Copyright 2025, Spinnify';
 
         // new Quest('📸', 'Share a photo of the inside your fridge—what is your favorite item & why?', null, 'What is your least favorite item?'),
         // new Quest('🎥', 'Share one or two memes/shorts that you find especially funny.'),
-        // new Quest('🎥', 'Make a 30-sec music video using only facial muscles for dancing.', 'Play a fun song in the background and let whatever embarassing movements/expressions happen! 🤪'),
+        // new Quest('🎥', 'Make a 30-sec music video using only facial muscles for dancing.', 'Play a fun song in the background and let whatever embarrassing movements/expressions happen! 🤪'),
         
         const quests = [
             new Quest(
@@ -710,9 +731,9 @@
                 '🗣️', 
                 'Voice Memo',
                 // description
-                'What, do you feel, is a common misperception about you?', 
+                'What do you feel is a common misperception about you?',
                 // extraInfo
-                "I.e., what is one way that you are sometimes misunderstood?", 
+                "I.e., what is one way that you are sometimes misunderstood?",
                 // bonus
                 '🗣️ Elaborate for 1+ minutes. E.g.: Why do you think this is? Does it ever bother you? Do you think others interact with you differently as a result?'
             ),
@@ -725,7 +746,18 @@
                 // extraInfo
                 null, 
                 // bonus
-                '🗣️ How would you describe your sense of humor? // What are the kinds of things that get you laughing the hardest?'
+                '🗣️ How would you describe your sense of humor? | What are the kinds of things that get you laughing the hardest?'
+            ),
+
+            new Quest(
+                '❓',
+                '...',
+                // description
+                'PARTNER CHOICE!', 
+                // extraInfo
+                'Your game partner chooses which quest you do!', 
+                // bonus
+                null
             ),
 
             new Quest(
@@ -747,7 +779,7 @@
                 // extraInfo
                 null, 
                 // bonus
-                '🗣️ Describe your dream house/property. Wide-open spaces? Plants? Convenience? In a world w/ no global warming or humanitarian issues, what is the first outlandish luxury purchase that you would totally want?'
+                '🗣️ Describe your dream house/property. Wide-open spaces? Plants? Convenience? In a world with no global warming or humanitarian issues, what is the first outlandish luxury purchase that you would totally want?'
             ),
 
             new Quest(
@@ -758,8 +790,8 @@
                 // extraInfo
                 'Think about times you\'ve felt seen by, appreciated by, or otherwise connected to friends/others. What were they saying, sharing, or doing that induced this sensation?',
                 // bonus
-                '🗣️ Conversely, when you feel affinity/connectedness/etc. towards someone, how does this tend to come out of (or stay in) you? E.g.:\n\n'+
-                '1️⃣ Hugs, etc. (physical touch gestures)\n2️⃣ Explicitly expressed affirmations\n3️⃣ General warmth/friendliness/smiling w/out explicitly expressed affirmations\n'+
+                '🗣️ Conversely, when you feel affinity/connectedness/etc. TOWARDS someone, what actions/expressions tend to come out of (or stay in) you? E.g.:\n\n'+
+                '1️⃣ Hugs, etc. (physical touch gestures)\n2️⃣ Explicitly expressed affirmations\n3️⃣ General warmth/friendliness/smiling without explicitly expressed affirmations\n'+
                 '4️⃣ Playfulness in the form of teasing/sarcasm (gentle or even cruel)\n5️⃣ Inclination for symbolic tokens of appreciation (service, gifting, etc.)\n'+
                 '6️⃣ Plain ol\' wanting to share time with/hang around someone—even if in silence'
             ),
@@ -768,7 +800,7 @@
                 '📸',
                 'Photo',
                 // description
-                'Share a random, out-of-pocket, or embarassing thing from ur camera roll and never talk about it again.',
+                'Share a random, out-of-pocket, or embarrassing thing from your camera roll and never talk about it again.',
                 // extraInfo
                 'Your game partner will live in confusion for the rest of their life... muahahaha 😈',
                 // bonus
@@ -803,14 +835,14 @@
                 // extraInfo
                 null,
                 // bonus
-                '🗣️ Explain any background/context as needed. // What is it about the video(s) that is so joy-sparking/special to you?'
+                '🗣️ Explain any background/context as needed. | What is it about the video(s) that is so joy-sparking/special to you?'
             ),
 
             new Quest(
                 '📸', 
                 'Photo',
                 // description
-                'With ur game partner, see who can take the silliest photo in the next 48 hours.', 
+                'With your game partner, see who can take the silliest photo in the next 48 hours.', 
                 // extraInfo
                 '🤝 Although your partner is required to participate, this still only counts as your turn. After this quest, your partner will take their next turn as normal.',
                 // bonus
@@ -825,7 +857,7 @@
                 // extraInfo
                 'The goofier the haiku/voice used, the better!', 
                 // bonus
-                '🗣️ Add any prelude/post-commentary as needed. // In general, how do you naturally react to or express frustration (e.g., stuffing it down/disassociating, finding someone to vent to, escaping to a comfort place/behavior/food, etc)? How do you wish you reacted instead?'
+                '🗣️ Add any prelude/post-commentary as needed. | In general, how do you naturally react to or express frustration (e.g., stuffing it down/disassociating, finding someone to vent to, escaping to a comfort place/behavior/food, etc)? How do you wish you reacted instead?'
             ),
 
             new Quest(
@@ -904,17 +936,15 @@
             '#a29bfe',
             '#fd79a8',
             '#ff6b6b',
+            '#5f5fc9',
             '#4ecdc4',
             '#45b7d1',
-            
             '#ff9ff3',
-            
-            '#fdcb6e',
-            
             '#96ceb4',
             '#74b9ff',
             '#4369b5',
             '#e17055',
+            '#edd377',
             '#00cec9',
             '#00b894',
             '#eda6d3',
@@ -1167,8 +1197,12 @@
         }
 
         function showInfoModal() {
+            // Check if copyright text exists and handle it separately
+            const hasCopyright = howToPlay.includes('Copyright 2025, Spinnify');
+            const mainContent = hasCopyright ? howToPlay.replace('Copyright 2025, Spinnify', '') : howToPlay;
+            
             const modalHTML = `
-                <div class="info-modal-content">${howToPlay}</div>
+                <div class="info-modal-content">${mainContent}${hasCopyright ? `<span class="copyright-text">Copyright 2025, Spinnify</span>` : ''}</div>
             `;
             modalContent.innerHTML = modalHTML;
             modalOverlay.classList.add('show');
@@ -1176,7 +1210,7 @@
         }
 
         function copyQuestText(emoji, modality, description, extraInfo, bonus) {
-            let formattedText = `My prompt was:\n\n${emoji} [${modality}]\n\n${description}`;
+            let formattedText = `Your TextQuest is:\n\n${emoji} [${modality}]\n\n${description}`;
             
             if (extraInfo) {
                 formattedText += `\n\nℹ️ ${extraInfo}`;
