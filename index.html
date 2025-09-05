@@ -147,7 +147,7 @@
         }
 
         .spin-button:disabled {
-            background: #ccc;
+            background: linear-gradient(45deg, #5ac2ee9c, #6b9affa2);
             cursor: not-allowed;
             transform: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -510,7 +510,7 @@
         /* Info modal content styles */
         .info-modal-content {
             font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
-            font-size: 1rem;
+            font-size: 0.85rem;
             line-height: 1.4;
             opacity: 0.9;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
@@ -587,6 +587,10 @@
             .quest-modal-extra-info, .quest-modal-bonus {
                 font-size: 0.7rem;
             }
+
+            .info-modal-content {
+                font-size: 0.75rem;
+            }
         }
 
         @media (max-width: 320px) {
@@ -617,6 +621,10 @@
             .quest-modal-extra-info, .quest-modal-bonus {
                 font-size: 0.65rem;
             }
+
+            .info-modal-content {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -626,8 +634,8 @@
     
     <div class="container">
         <div class="page-header">
-            <h1 class="page-title">TextQuests</h1>
-            <p class="page-subtitle">A game of easy and fun things to do over text!</p>
+            <h1 class="page-title">✨ TextQuests ✨</h1>
+            <p class="page-subtitle">A game of fun & easy things to do over text!</p>
         </div>
         <div class="wheel-container">
             <div class="wheel-pointer"></div>
@@ -637,7 +645,7 @@
             <div class="center-circle"></div>
         </div>
 
-        <button class="spin-button" id="spinButton">Spin the Wheel!</button>
+        <button class="spin-button" id="spinButton">🎲 Spin the Wheel!</button>
     </div>
 
     <!-- Modal for quest results -->
@@ -667,9 +675,9 @@
             }
         }
 
-        let howToPlay = 'TextQuests is played asynchronously with a partner over text.\n\n';
-        howToPlay += 'Players take turns completing short, accessible challenges (quests) designed to be silly, reflective, or otherwise fun.\n\n';
-        howToPlay += 'Players can EITHER spin the wheel to receive a quest OR selectively decide their quest by clicking on different wheel segments and choosing the quest they are most interested in.';
+        let howToPlay = '💁 How to play:\n\n📱💬 ⏳🤷\n✨ TextQuests ✨ is played asynchronously with a partner over text.\n\n';
+        howToPlay += '👤 🔄 👤🎯\nPlayers take turns completing short, accessible challenges (quests) designed to be silly, reflective, or otherwise fun!\n\n';
+        howToPlay += '🎲👈👉🤔✅\nPlayers can either spin the wheel to receive quest assignments or manually choose them by clicking on wheel segments and selecting their preferences.';
 
         // new Quest('📸', 'Share a photo of the inside your fridge—what is your favorite item & why?', null, 'What is your least favorite item?'),
         // new Quest('🎥', 'Share one or two memes/shorts that you find especially funny.'),
@@ -726,7 +734,7 @@
                 // description
                 'What, do you feel, is a side of you that the world doesn\'t often get to see?', 
                 // extraInfo
-                'How does it differ from the side(s) that the world does typically see?', 
+                'How does this side of you differ from the side(s) that the world does typically see?', 
                 // bonus
                 '🗣️ Elaborate for 1+ minutes.'
             ),
@@ -898,14 +906,17 @@
             '#ff6b6b',
             '#4ecdc4',
             '#45b7d1',
+            
             '#ff9ff3',
+            
             '#fdcb6e',
-            '#74b9ff',
+            
             '#96ceb4',
+            '#74b9ff',
             '#4369b5',
             '#e17055',
-            '#00b894',
             '#00cec9',
+            '#00b894',
             '#eda6d3',
         ];
         
@@ -1054,7 +1065,7 @@
             
             isSpinning = true;
             spinButton.disabled = true;
-            spinButton.textContent = 'Spinning...';
+            spinButton.textContent = '👽 Spinning...';
             
             // Disable segment clicks while spinning
             const segments = document.querySelectorAll('.wheel-segment');
@@ -1084,7 +1095,7 @@
                 
                 // Reset button state
                 spinButton.disabled = false;
-                spinButton.textContent = 'Spin the Wheel!';
+                spinButton.textContent = '🎲 Spin the Wheel!';
                 isSpinning = false;
                 
                 // Re-enable segment clicks
