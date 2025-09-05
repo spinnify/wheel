@@ -372,7 +372,7 @@
         }
 
         .quest-modal-description {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.4;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             padding: 0 10px;
@@ -579,6 +579,14 @@
                 height: 30px;
                 font-size: 16px;
             }
+
+            .quest-modal-description {
+                font-size: 1rem;
+            }
+
+            .quest-modal-extra-info, .quest-modal-bonus {
+                font-size: 0.7rem;
+            }
         }
 
         @media (max-width: 320px) {
@@ -600,6 +608,14 @@
                 font-size: 0.6rem;
                 margin-top: 10px;
                 padding: 0 5px;
+            }
+
+            .quest-modal-description {
+                font-size: 0.95rem;
+            }
+
+            .quest-modal-extra-info, .quest-modal-bonus {
+                font-size: 0.65rem;
             }
         }
     </style>
@@ -744,7 +760,7 @@
                 '📸',
                 'Photo',
                 // description
-                'Share the most random, out-of-pocket pic/vid from ur camera roll and NEVER, IN A MILLION YEARS explain anything related to/about it.',
+                'Share a random, out-of-pocket, or embarassing thing from ur camera roll and never talk about it again.',
                 // extraInfo
                 'Your game partner will live in confusion for the rest of their life... muahahaha 😈',
                 // bonus
@@ -873,23 +889,24 @@
         
         // Colors for the segments (will cycle if more segments than colors)
         const colors = [
+            '#ff7675',
             '#feca57',
-            '#ff9ff3',
+            '#7f4de3',
             '#54a0ff',
-            // '#ff6b6b',
-            // '#4ecdc4',
-            '#45b7d1',
-            '#96ceb4',
-            '#feca57',
-            // '#ff9ff3',
-            '#54a0ff',
-            // '#ff7675',
-            // '#74b9ff',
-            // '#a29bfe',
+            '#a29bfe',
             '#fd79a8',
+            '#ff6b6b',
+            '#4ecdc4',
+            '#45b7d1',
+            '#ff9ff3',
             '#fdcb6e',
+            '#74b9ff',
+            '#96ceb4',
+            '#4369b5',
+            '#e17055',
             '#00b894',
             '#00cec9',
+            '#eda6d3',
         ];
         
         let isSpinning = false;
