@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Textquests</title>
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --button-gradient: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            --button-gradient-hover: linear-gradient(45deg, #ee5a6f, #ff6b6b);
+            --copy-button-gradient: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            --copy-button-gradient-hover: linear-gradient(45deg, #45b7d1, #4ecdc4);
+            --copy-button-gradient-copied: linear-gradient(45deg, #96ceb4, #00b894);
+            --modal-backdrop: rgba(0, 0, 0, 0.5);
+            --text-shadow-strong: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 3px 3px 5px rgba(0,0,0,0.5);
+            --text-shadow-light: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            --text-shadow-medium: 1px 1px 2px rgba(0,0,0,0.8);
+            --monospace-font: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            --border-glass: 1px solid rgba(255,255,255,0.3);
+            --background-glass: rgba(255,255,255,0.1);
+            --background-glass-hover: rgba(255, 255, 255, 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,7 +30,7 @@
 
         body {
             font-family: 'Arial Narrow', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -51,7 +68,7 @@
             width: 50%;
             height: 50%;
             transform-origin: 100% 100%;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: var(--border-glass);
             clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
             display: flex;
             align-items: center;
@@ -76,7 +93,7 @@
             font-weight: 600;
             font-size: 11px;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            text-shadow: var(--text-shadow-medium);
             line-height: 1.1;
             transform-origin: center;
             font-family: 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
@@ -111,20 +128,15 @@
         }
 
         .spin-button {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            background: var(--button-gradient);
             border: none;
             border-radius: 50px;
             padding: 12px 16px;
             font-size: 1rem;
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-family: var(--monospace-font);
             font-weight: bold;
             color: #e8eaf6;
-            text-shadow: 
-                2px 2px 0px #0000008a,
-                -1px -1px 0px #0000008a,
-                1px -1px 0px #0000008a,
-                -1px 1px 0px #0000008a,
-                3px 3px 5px rgba(0,0,0,0.5);
+            text-shadow: var(--text-shadow-strong);
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -137,7 +149,7 @@
         }
 
         .spin-button:hover {
-            background: linear-gradient(45deg, #ee5a6f, #ff6b6b);
+            background: var(--button-gradient-hover);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
@@ -157,9 +169,9 @@
             margin-top: 30px;
             padding: 20px;
             border-radius: 15px;
-            background: rgba(255,255,255,0.1);
+            background: var(--background-glass);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: var(--border-glass);
             min-height: 60px;
             display: flex;
             align-items: center;
@@ -169,7 +181,7 @@
         .result-text {
             font-size: 1.3rem;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: var(--text-shadow-light);
         }
 
         /* Mobile optimizations */
@@ -221,15 +233,10 @@
 
         .page-title {
             font-size: 2.1rem;
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-family: var(--monospace-font);
             font-weight: bold;
             margin-bottom: 10px;
-            text-shadow: 
-                2px 2px 0px #000,
-                -1px -1px 0px #000,
-                1px -1px 0px #000,
-                -1px 1px 0px #000,
-                3px 3px 5px rgba(0,0,0,0.5);
+            text-shadow: var(--text-shadow-strong);
             color: #e8eaf6;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -240,7 +247,7 @@
 
         .page-subtitle {
             font-size: 0.8rem;
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-family: var(--monospace-font);
             font-weight: 300;
             opacity: 0.85;
             color: #e8eaf6;
@@ -286,7 +293,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: var(--modal-backdrop);
             backdrop-filter: blur(5px);
             z-index: 1000;
             justify-content: center;
@@ -300,7 +307,7 @@
         }
 
         .modal {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             border-radius: 20px;
             padding: 50px 30px 30px 30px;
             max-width: 500px;
@@ -362,43 +369,43 @@
         }
 
         .quest-modal-modality {
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-family: var(--monospace-font);
             font-size: 1rem;
             line-height: 1.3;
             opacity: 0.85;
             margin-bottom: 15px;
             padding: 0 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: var(--text-shadow-light);
         }
 
         .quest-modal-description {
             font-size: 1.1rem;
             line-height: 1.4;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-shadow: var(--text-shadow-light);
             padding: 0 10px;
             margin-bottom: 15px;
         }
 
         .quest-modal-extra-info, .quest-modal-bonus {
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-family: var(--monospace-font);
             font-size: 0.8rem;
             line-height: 1.3;
             opacity: 0.85;
             margin-bottom: 15px;
             padding: 0 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: var(--text-shadow-light);
         }
 
         .quest-modal-copy-quest-button {
-            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            background: var(--copy-button-gradient);
             border: none;
             border-radius: 25px;
             padding: 10px 20px;
             font-size: 0.9rem;
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-family: var(--monospace-font);
             font-weight: bold;
             color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: var(--text-shadow-light);
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
@@ -410,7 +417,7 @@
         }
 
         .quest-modal-copy-quest-button:hover {
-            background: linear-gradient(45deg, #45b7d1, #4ecdc4);
+            background: var(--copy-button-gradient-hover);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -420,68 +427,17 @@
         }
 
         .quest-modal-copy-quest-button.copied {
-            background: linear-gradient(45deg, #96ceb4, #00b894);
+            background: var(--copy-button-gradient-copied);
         }
 
-        /* Legacy support for old class names (can be removed later) */
-        .modal-content {
-            font-size: 1.2rem;
-            line-height: 1.4;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            padding: 0 10px;
-        }
-
-        .modal-extra-info, .modal-bonus {
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
-            font-size: 0.8rem;
-            line-height: 1.3;
-            opacity: 0.85;
-            margin-top: 15px;
-            padding: 0 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .copy-button {
-            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-            border: none;
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 20px;
-            display: inline-block;
-            min-width: 120px;
-        }
-
-        .copy-button:hover {
-            background: linear-gradient(45deg, #45b7d1, #4ecdc4);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .copy-button:active {
-            transform: translateY(0);
-        }
-
-        .copy-button.copied {
-            background: linear-gradient(45deg, #96ceb4, #00b894);
-        }
 
         /* Info button styles */
         .info-button {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: var(--background-glass);
+            border: var(--border-glass);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -498,7 +454,7 @@
         }
 
         .info-button:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: var(--background-glass-hover);
             transform: scale(1.1);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
@@ -509,11 +465,11 @@
 
         /* Info modal content styles */
         .info-modal-content {
-            font-family: 'Courier New', 'Monaco', 'Lucida Console', 'Liberation Mono', monospace;
+            font-family: var(--monospace-font);
             font-size: 0.85rem;
             line-height: 1.4;
             opacity: 0.9;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-shadow: var(--text-shadow-light);
             white-space: pre-line;
             text-align: left;
             padding: 0 10px;
@@ -650,7 +606,7 @@
 </head>
 <body>
     <!-- Info button -->
-    <button class="info-button" id="infoButton" title="How to Play">ℹ️</button>
+    <button class="info-button" id="infoButton" title="How to Play" aria-label="Show how to play instructions">ℹ️</button>
     
     <div class="container">
         <div class="page-header">
@@ -665,18 +621,46 @@
             <div class="center-circle"></div>
         </div>
 
-        <button class="spin-button" id="spinButton">🎲 Spin the Wheel!</button>
+        <button class="spin-button" id="spinButton" aria-label="Spin the wheel to get a random quest">🎲 Spin the Wheel!</button>
     </div>
 
     <!-- Modal for quest results -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
-            <button class="modal-close" id="modalClose">&times;</button>
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
             <div class="modal-content" id="modalContent"></div>
         </div>
     </div>
 
     <script>
+        // Configuration constants
+        const CONFIG = {
+            WHEEL: {
+                BASE_FONT_SIZE: 26,
+                MIN_FONT_SIZE: 6,
+                TEXT_DISTANCE: 32,
+                TEXT_WIDTH: 130,
+                TEXT_WIDTH_MOBILE: 110,
+                TEXT_WIDTH_SMALL: 90
+            },
+            SPIN: {
+                MIN_ROTATIONS: 2,
+                MAX_ROTATIONS: 3,
+                DURATION: 4000,
+                PARTNER_CHOICE_INDEX: 4,
+                PARTNER_CHOICE_WEIGHT: 0.22
+            },
+            CONFETTI: {
+                COUNT: 10,
+                DELAY: 100,
+                DURATION: 3000,
+                EMOJIS: ['🎉', '🎊', '✨', '🌟', '💫']
+            },
+            FEEDBACK: {
+                COPY_TIMEOUT: 2000
+            }
+        };
+
         const wheel = document.getElementById('wheel');
         const spinButton = document.getElementById('spinButton');
         const modalOverlay = document.getElementById('modalOverlay');
@@ -686,12 +670,36 @@
         
         // Quest dataclass structure
         class Quest {
-            constructor(emoji, modality, description, extraInfo = null, bonus = null) {
+            constructor({emoji, modality, description, extraInfo = null, bonus = null}) {
                 this.emoji = emoji;
                 this.modality = modality;
                 this.description = description;
                 this.extraInfo = extraInfo;
                 this.bonus = bonus;
+            }
+            
+            // Helper method to get formatted text for copying
+            getFormattedText() {
+                let text = `Your TextQuest is:\n\n${this.emoji} [${this.modality}]\n\n${this.description}`;
+                
+                if (this.extraInfo) {
+                    text += `\n\nℹ️ ${this.extraInfo}`;
+                }
+                
+                if (this.bonus) {
+                    text += `\n\nBONUS: ${this.bonus}`;
+                }
+                
+                return text;
+            }
+            
+            // Helper method to get escaped strings for HTML embedding
+            getEscapedStrings() {
+                return {
+                    description: this.description.replace(/`/g, '\\`').replace(/'/g, "\\'"),
+                    extraInfo: this.extraInfo ? this.extraInfo.replace(/`/g, '\\`').replace(/'/g, "\\'") : null,
+                    bonus: this.bonus ? this.bonus.replace(/`/g, '\\`').replace(/'/g, "\\'") : null
+                };
             }
         }
 
@@ -701,241 +709,155 @@
         howToPlay += 'Copyright 2025, Spinnify';
     
         const quests = [
-            new Quest(
-                '🗣️', 
-                'Voice Memo',
-                // description
-                'What is some recent positive trend in your life that you are grateful for/happy about and why?', 
-                // extraInfo
-                null, 
-                // bonus
-                '🗣️ If you were your own biggest fan/advocate, what affirmation or advice would you, in response to hearing about this, give yourself?'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'What is some recent positive trend in your life that you are grateful for/happy about and why?',
+                bonus: '🗣️ If you were your own biggest fan/advocate, what affirmation or advice would you, in response to hearing about this, give yourself?'
+            }),
 
-            new Quest(
-                '📸',
-                'Photo',
-                // description
-                'Share 3-10 pics of some favorite moments from the past 2 years.', 
-                // extraInfo
-                null, 
-                // bonus
-                "🗣️ Briefly describe the what/where/when of each photo and, optionally, expound any fun/funny accompanying details/anecdotes."
-            ),
+            new Quest({
+                emoji: '📸',
+                modality: 'Photo',
+                description: 'Share 3-10 pics of some favorite moments from the past 2 years.',
+                bonus: "🗣️ Briefly describe the what/where/when of each photo and, optionally, expound any fun/funny accompanying details/anecdotes."
+            }),
 
-            new Quest(
-                '🗣️', 
-                'Voice Memo',
-                // description
-                'What do you feel is a common misperception about you?',
-                // extraInfo
-                "I.e., what is one way that you are sometimes misunderstood?",
-                // bonus
-                '🗣️ Elaborate for 1+ minutes. E.g.: Why do you think this is? Does it ever bother you? Do you think others interact with you differently as a result?'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'What do you feel is a common misperception about you?',
+                extraInfo: "I.e., what is one way that you are sometimes misunderstood?",
+                bonus: '🗣️ Elaborate for 1+ minutes. E.g.: Why do you think this is? Does it ever bother you? Do you think others interact with you differently as a result?'
+            }),
 
-            new Quest(
-                '🗣️',
-                'Voice Memo', 
-                // description
-                'Share the story of a not-too-distant time when you laughed your rear end off (laughed unreasonably hard).', 
-                // extraInfo
-                null, 
-                // bonus
-                '🗣️ How would you describe your sense of humor? || What are the kinds of things that get you laughing the hardest?'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'Share the story of a rec time when you laughed your rear end off (laughed unreasonably hard).',
+                bonus: '🗣️ How would you describe your sense of humor? || What are the kinds of things that get you laughing the hardest?'
+            }),
 
-            new Quest(
-                '❓',
-                '...',
-                // description
-                '[PARTNER CHOICE]', 
-                // extraInfo
-                'Your game partner chooses which quest you do!', 
-                // bonus
-                null
-            ),
+            new Quest({
+                emoji: '❓',
+                modality: '...',
+                description: 'Your game partner chooses which quest you do!',
+            }),
 
-            new Quest(
-                '🗣️',
-                'Voice Memo',
-                // description
-                'What, do you feel, is a side of you that the world doesn\'t often get to see?', 
-                // extraInfo
-                'How does this side of you differ from the side(s) that the world does typically see?', 
-                // bonus
-                '🗣️ Elaborate for 1+ minutes.'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'What do you feel is a side of you that the world doesn\'t often get to see?',
+                extraInfo: 'How does this side of you differ from the side(s) that the world does typically see?',
+                bonus: '🗣️ Elaborate for 1+ minutes.'
+            }),
 
-            new Quest(
-                '📸',
-                'Photo', 
-                // description
-                'Share a pic+explanation of your favorite part of/thing in your house.', 
-                // extraInfo
-                null, 
-                // bonus
-                '🗣️ Describe your dream house/property. Wide-open spaces? Plants? Convenience? In a world with no global warming or humanitarian issues, what is the first outlandish luxury purchase that you would totally want?'
-            ),
+            new Quest({
+                emoji: '📸',
+                modality: 'Photo',
+                description: 'Share a pic+explanation of your favorite part of/thing in your house.',
+                bonus: '🗣️ Describe your dream house/property. Wide-open spaces? Plants? Convenience? In a world with no global warming or humanitarian issues, what is the first outlandish luxury purchase that you would totally want?'
+            }),
 
-            new Quest(
-                '🗣️', 
-                'Voice Memo',
-                // description
-                'What are some patterns for how you feel connection to/loved by other humans?',
-                // extraInfo
-                'Think about times you\'ve felt seen by, appreciated by, or otherwise connected to friends/others. What were they saying, sharing, or doing that induced this sensation?',
-                // bonus
-                '🗣️ Conversely, when you feel affinity/connectedness/etc. TOWARDS someone, what actions/expressions tend to come out of (or stay in) you? E.g.:\n\n'+
-                '1️⃣ Hugs, etc. (physical touch gestures)\n2️⃣ Explicitly expressed affirmations\n3️⃣ General warmth/friendliness without explicitly expressed affirmations\n'+
-                '4️⃣ Playfulness in the form of teasing/sarcasm (gentle or even cruel)\n5️⃣ Inclination for symbolic tokens of appreciation (service, gifting, etc.)\n'+
-                '6️⃣ Plain ol\' wanting to share time with/hang around someone—even if in silence'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'What are some patterns for how you feel connection to/loved by other humans?',
+                extraInfo: 'Think about times you\'ve felt seen by, appreciated by, or otherwise connected to friends/others. What were they saying, sharing, or doing that induced this sensation?',
+                bonus: '🗣️ Conversely, when you feel affinity/connectedness/etc. TOWARDS someone, what actions/expressions tend to come out of (or stay in) you? E.g.:\n\n' +
+                    '1️⃣ Hugs, etc. (physical touch gestures)\n2️⃣ Explicitly expressed affirmations\n3️⃣ General warmth/friendliness without explicitly expressed affirmations\n' +
+                    '4️⃣ Playfulness in the form of teasing/sarcasm (gentle or even cruel)\n5️⃣ Inclination for symbolic tokens of appreciation (service, gifting, etc.)\n' +
+                    '6️⃣ Plain ol\' wanting to share time with/hang around someone—even if in silence'
+            }),
 
-            new Quest(
-                '📸',
-                'Photo',
-                // description
-                'Share a random, out-of-pocket, or embarrassing pic/vid your camera roll and never talk about it again.',
-                // extraInfo
-                'Your game partner will live in confusion for the rest of their life... muahahaha 😈',
-                // bonus
-                null
-            ),
+            new Quest({
+                emoji: '📸',
+                modality: 'Photo',
+                description: 'Share a random, out-of-pocket, or embarrassing pic/vid your camera roll and never talk about it again.',
+                extraInfo: 'Your game partner will live in confusion for the rest of their life... muahahaha 😈'
+            }),
 
-            new Quest(
-                '🎷',
-                'Music/Playlist',
-                // description
-                'Make/share a 5+ song playlist titled "[your name]-core."', 
-                // extraInfo
-                '🗣️ E.g., if your name is Marge, you would make a playlist titled "Marge-core", with 5+ songs that capture your vibe/aesthetic.'
-            ),
+            new Quest({
+                emoji: '🎷',
+                modality: 'Music/Playlist',
+                description: 'Make/share a 5+ song playlist titled "[your name]-core."',
+                extraInfo: '🗣️ E.g., if your name is Marge, you would make a playlist titled "Marge-core", with 5+ songs that capture your vibe/aesthetic.'
+            }),
 
-            new Quest(
-                '🗣️',
-                'Voice Memo',
-                // description
-                'Share one or more quirks about how, where, or with whom you grew up.', 
-                // extraInfo
-                null, 
-                // bonus
-                "🗣️ Elaborate for 1+ minutes and describe both something positive as well as something negative. How have these things shaped you/your life today?"
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'Share one or more quirks about how, where, or with whom you grew up.',
+                bonus: "🗣️ Elaborate for 1+ minutes and describe both something positive as well as something negative. How have these things shaped you/your life today?"
+            }),
 
-            new Quest(
-                '🎥',
-                'Video',
-                // description
-                'Share one (or, at max, 2-3) video(s) that bring you joy (YouTube, camera roll, TikTok, etc.).', 
-                // extraInfo
-                null,
-                // bonus
-                '🗣️ Explain any background/context as needed. || What is it about the video(s) that is so joy-sparking/special to you?'
-            ),
+            new Quest({
+                emoji: '🎥',
+                modality: 'Video',
+                description: 'Share one (or, at max, 2-3) video(s) that bring you joy (YouTube, camera roll, TikTok, etc.).',
+                bonus: '🗣️ Explain any background/context as needed. || What is it about the video(s) that is so joy-sparking/special to you?'
+            }),
 
-            new Quest(
-                '📸', 
-                'Photo',
-                // description
-                'With your game partner, see who can take the silliest photo in the next 48 hours.', 
-                // extraInfo
-                '🤝 Although your partner is required to participate, this quest only counts as your turn. After this, your partner will take their next turn as normal.',
-                // bonus
-                '🧑‍⚖️ Get a 3rd-party judge involved; the winner gets to give the loser a (kind/reasonable) dare.'
-            ),
+            new Quest({
+                emoji: '📸',
+                modality: 'Photo',
+                description: 'With your game partner, see who can take the silliest photo in the next 48 hours.',
+                extraInfo: '🤝 Although your partner is required to participate, this quest only counts as your turn. After this, your partner will take their next turn as normal.',
+                bonus: '🧑‍⚖️ Get a 3rd-party judge involved; the winner gets to give the loser a (kind/reasonable) dare.'
+            }),
 
-            new Quest(
-                '🗣️',
-                'Voice Memo',
-                // description
-                'Perform a haiku about something that frustrated you today.', 
-                // extraInfo
-                'The goofier the haiku/voice used, the better!', 
-                // bonus
-                '🗣️ Add any prelude/post-commentary as needed. || In general, how do you naturally react to or express frustration (e.g., stuffing it down/disassociating, finding someone to vent to, escaping to a comfort place/behavior/food, etc)? How do you wish you reacted instead?'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'Perform a haiku about something that frustrated you today.',
+                extraInfo: 'The goofier the haiku/voice used, the better!',
+                bonus: '🗣️ Add any prelude/post-commentary as needed. || In general, how do you naturally react to or express frustration (e.g., stuffing it down/disassociating, finding someone to vent to, escaping to a comfort place/behavior/food, etc)? How do you wish you reacted instead?'
+            }),
 
-            new Quest(
-                '🗣️',
-                'Voice Memo',
-                // description
-                'What is one (or more) thing(s) that your game partner doesn\'t/might not know about you?', 
-                // extraInfo
-                'It could be anything: a superficial/random thing or even a more pithy/core trait or event in your life.\n\nE.g., what is something that others might see as a nifty hobby/experience/random fact of yours that has just never come up in your interactions?', 
-                // bonus
-                '🗣️ If applicable: what is something that your partner does not, but PROBABLY SHOULD know? That is, given the nature of your relationship, are there any things that might be USEFUL to disclose?'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'What is one (or more) thing(s) that your game partner doesn\'t/might not know about you?',
+                extraInfo: 'It could be anything: a superficial/random thing or even a more pithy/core trait or event in your life.\n\nE.g., what is something that others might see as a nifty hobby/experience/random fact of yours that has just never come up in your interactions?',
+                bonus: '🗣️ If applicable: what is something that your partner does not, but PROBABLY SHOULD know? That is, given the nature of your relationship, are there any things that might be USEFUL to disclose?'
+            }),
 
+            new Quest({
+                emoji: '📸',
+                modality: 'Photo',
+                description: 'Share 1-3 fictional (cartoon, movie, etc.) characters that your game partner reminds you of.',
+                bonus: '🗣️ Why and in what way(s) do they remind you of each character?'
+            }),
 
-            new Quest(
-                '📸',
-                'Photo',
-                // description
-                'Share 1-3 fictional (cartoon, movie, etc.) characters that your game partner reminds you of.', 
-                // extraInfo
-                null, 
-                // bonus
-                '🗣️ Why and in what way(s) do they remind you of each character?'
-            ),
+            new Quest({
+                emoji: '🗣️',
+                modality: 'Voice Memo',
+                description: 'Share with your game partner 1-3 things you admire or like about them.',
+                extraInfo: 'I mean, they must be pretty stinkin\' cool if they\'re playing TextQuests with you!'
+            }),
 
-            new Quest(
-                '🗣️',
-                'Voice Memo',
-                // description
-                'Share with your game partner 1-3 things you admire or like about them.',
-                // extraInfo
-                'I mean, they must be pretty stinkin\' cool if they\'re playing TextQuests with you!', 
-                // bonus
-                null
-            ),
+            new Quest({
+                emoji: '🎷',
+                modality: 'Music/Playlist',
+                description: 'What are some songs (make a playlist?) that everybody seems to love, but that you just don\'t really get?',
+                bonus: '🗣️ Conversely, what is a "hot take" song (i.e., weird, controversial, or otherwise not-so-mass-appealing song) that, for some reason, you totally dig?'
+            }),
 
-            new Quest(
-                '🎷',
-                'Music/Playlist',
-                // description
-                'What are some songs (make a playlist?) that everybody seems to love, but that you just don\'t really get?', 
-                // extraInfo
-                null, 
-                // bonus
-                '🗣️ Conversely, what is a "hot take" song (i.e., weird, controversial, or otherwise not-so-mass-appealing song) that, for some reason, you totally dig?'
-            ),
+            new Quest({
+                emoji: '🎷',
+                modality: 'Music/Playlist',
+                description: 'Make/share a 3+ song playlist titled "[your game partner\'s name]-core."',
+                extraInfo: 'E.g., if your partner\'s name is Sam, you would make a playlist titled "Sam-core", with 3+ songs that you think capture their vibe/aesthetic.'
+            }),
 
-            new Quest(
-                '🎷',
-                'Music/Playlist',
-                // description
-                'Make/share a 3+ song playlist titled "[your game partner\'s name]-core."', 
-                // extraInfo
-                'E.g., if your partner\'s name is Sam, you would make a playlist titled "Sam-core", with 3+ songs that you think capture their vibe/aesthetic.',
-                // bonus
-                null
-            ),
+            new Quest({
+                emoji: '📸',
+                modality: 'Photo',
+                description: 'Share 1+ pic(s) of yourself in some form of costume or goofy apparel.',
+                extraInfo: 'E.g., an old Halloween costume, funny sunglasses at the store, etc.',
+                bonus: '📅 Make this be a photo that you take in the next 24 hours.'
+            }),
 
-            new Quest(
-                '📸',
-                'Photo',
-                // description
-                'Share 1+ pic(s) of yourself in some form of costume or goofy apparel.', 
-                // extraInfo
-                'E.g., an old Halloween costume, funny sunglasses at the store, etc.', 
-                // bonus
-                '📅 Make this be a photo that you take in the next 24 hours.'
-            ),
-
-            // new Quest(
-            //     '🗣️',
-            //     'Voice Memo',
-            //     // description
-            //     'Besides you, who is the goofiest member of your family (or some other core social group)? In what way(s) are they goofy?', 
-            //     // extraInfo
-            //     null, 
-            //     // bonus
-            //     '🗣️ What is a fun memory that exemplifies this goofiness? How does this compare/contrast to your flavor of goofiness?'
-            // ),
-            // new Quest('📸', 'Share a photo of the inside your fridge—what is your favorite item & why?', null, 'What is your least favorite item?'),
-            // new Quest('🎥', 'Share one or two memes/shorts that you find especially funny.'),
-            // new Quest('🎥', 'Make a 30-sec music video using only facial muscles for dancing.', 'Play a fun song in the background and let whatever embarrassing movements/expressions happen! 🤪'),
         ];
         
         // Colors for the segments (will cycle if more segments than colors)
@@ -972,108 +894,142 @@
             
             wheel.innerHTML = ''; // Clear existing segments
             
-            for (let i = 0; i < numSegments; i++) {
-                const segment = document.createElement('div');
-                segment.className = 'wheel-segment';
-                
-                const angle = i * anglePerSegment;
-                const colorIndex = i % colors.length;
-                
-                // Create proper pie slice using clip-path
-                const startAngle = (i * anglePerSegment) - 90; // Start from top
-                const endAngle = ((i + 1) * anglePerSegment) - 90;
-                
-                // Convert angles to radians for calculations
-                const startRad = (startAngle * Math.PI) / 180;
-                const endRad = (endAngle * Math.PI) / 180;
-                
-                // Calculate multiple points along the arc for a proper pie slice
-                const centerX = 50;
-                const centerY = 50;
-                const radius = 50;
-                
-                // Create points for the pie slice - start from center, go to start edge, along arc, back to center
-                let clipPathPoints = `50% 50%`; // Start at center
-                
-                // Add start point
-                const x1 = centerX + radius * Math.cos(startRad);
-                const y1 = centerY + radius * Math.sin(startRad);
-                clipPathPoints += `, ${x1}% ${y1}%`;
-                
-                // Add points along the arc (more points for smoother curves on wider segments)
-                const arcPoints = Math.max(2, Math.ceil(anglePerSegment / 5)); // More points for larger segments
-                for (let j = 1; j < arcPoints; j++) {
-                    const intermediateAngle = startAngle + (anglePerSegment * j / arcPoints);
-                    const intermediateRad = (intermediateAngle * Math.PI) / 180;
-                    const xIntermediate = centerX + radius * Math.cos(intermediateRad);
-                    const yIntermediate = centerY + radius * Math.sin(intermediateRad);
-                    clipPathPoints += `, ${xIntermediate}% ${yIntermediate}%`;
-                }
-                
-                // Add end point
-                const x2 = centerX + radius * Math.cos(endRad);
-                const y2 = centerY + radius * Math.sin(endRad);
-                clipPathPoints += `, ${x2}% ${y2}%`;
-                
-                // Create proper pie slice
-                segment.style.background = colors[colorIndex];
-                segment.style.clipPath = `polygon(${clipPathPoints})`;
-                segment.style.transform = 'none';
-                segment.style.width = '100%';
-                segment.style.height = '100%';
-                segment.style.position = 'absolute';
-                segment.style.border = '1px solid rgba(255,255,255,0.3)';
-                
-                // Add data attribute for easier identification
-                segment.setAttribute('data-quest-index', i);
-                
-                // Create text element
-                const textElement = document.createElement('div');
-                textElement.className = 'segment-text';
-                textElement.textContent = quests[i].description;
-                
-                // Position text in the middle of the segment
-                const midAngle = startAngle + (anglePerSegment / 2);
-                const textDistance = 32; // Distance from center (adjusted for larger wheel)
-                const textX = 50 + textDistance * Math.cos((midAngle * Math.PI) / 180);
-                const textY = 50 + textDistance * Math.sin((midAngle * Math.PI) / 180);
-                
-                textElement.style.left = `${textX}%`;
-                textElement.style.top = `${textY}%`;
-                // Rotate text to read left-to-right from center toward edge (no +90 offset)
-                textElement.style.transform = `translate(-50%, -50%) rotate(${midAngle}deg)`;
-                
-                // Dynamic font sizing based on text length and number of segments
-                const textLength = quests[i].description.length;
-                const baseFontSize = Math.max(8, 27 - numSegments); // Base size decreases with more segments
-                const lengthPenalty = Math.max(0, textLength - 30) * 0.1; // Reduce size for long text
-                const dynamicFontSize = Math.max(6, baseFontSize - lengthPenalty);
-                
-                textElement.style.fontSize = dynamicFontSize + 'px';
-                textElement.style.width = '100px'; // Fixed width for text wrapping
-                textElement.style.whiteSpace = 'normal'; // Allow text wrapping
-                textElement.style.overflow = 'hidden';
-                textElement.style.wordBreak = 'break-word';
-                
-                segment.appendChild(textElement);
+            quests.forEach((quest, index) => {
+                const segment = createWheelSegment(quest, index, anglePerSegment);
                 wheel.appendChild(segment);
-            }
+            });
             
             // Reinitialize click listeners after creating segments
-            addSegmentClickListeners();
+            initializeSegmentInteractions();
+        }
+
+        // Create a single wheel segment
+        function createWheelSegment(quest, index, anglePerSegment) {
+            const segment = document.createElement('div');
+            segment.className = 'wheel-segment';
+            
+            const colorIndex = index % colors.length;
+            const clipPath = calculateSegmentClipPath(index, anglePerSegment);
+            
+            // Style the segment
+            segment.style.background = colors[colorIndex];
+            segment.style.clipPath = `polygon(${clipPath})`;
+            segment.style.transform = 'none';
+            segment.style.width = '100%';
+            segment.style.height = '100%';
+            segment.style.position = 'absolute';
+            segment.style.border = '1px solid rgba(255,255,255,0.3)';
+            
+            // Add accessibility attributes
+            segment.setAttribute('data-quest-index', index);
+            segment.setAttribute('role', 'button');
+            segment.setAttribute('tabindex', '0');
+            segment.setAttribute('aria-label', `Quest: ${quest.description.substring(0, 50)}...`);
+            
+            // Create and add text element
+            const textElement = createSegmentText(quest, index, anglePerSegment);
+            segment.appendChild(textElement);
+            
+            return segment;
+        }
+
+        // Calculate the clip path for a wheel segment
+        function calculateSegmentClipPath(index, anglePerSegment) {
+            const startAngle = (index * anglePerSegment) - 90; // Start from top
+            const endAngle = ((index + 1) * anglePerSegment) - 90;
+            
+            // Convert angles to radians for calculations
+            const startRad = (startAngle * Math.PI) / 180;
+            const endRad = (endAngle * Math.PI) / 180;
+            
+            // Calculate multiple points along the arc for a proper pie slice
+            const centerX = 50;
+            const centerY = 50;
+            const radius = 50;
+            
+            // Create points for the pie slice - start from center, go to start edge, along arc, back to center
+            let clipPathPoints = `50% 50%`; // Start at center
+            
+            // Add start point
+            const x1 = centerX + radius * Math.cos(startRad);
+            const y1 = centerY + radius * Math.sin(startRad);
+            clipPathPoints += `, ${x1}% ${y1}%`;
+            
+            // Add points along the arc (more points for smoother curves on wider segments)
+            const arcPoints = Math.max(2, Math.ceil(anglePerSegment / 5)); // More points for larger segments
+            for (let j = 1; j < arcPoints; j++) {
+                const intermediateAngle = startAngle + (anglePerSegment * j / arcPoints);
+                const intermediateRad = (intermediateAngle * Math.PI) / 180;
+                const xIntermediate = centerX + radius * Math.cos(intermediateRad);
+                const yIntermediate = centerY + radius * Math.sin(intermediateRad);
+                clipPathPoints += `, ${xIntermediate}% ${yIntermediate}%`;
+            }
+            
+            // Add end point
+            const x2 = centerX + radius * Math.cos(endRad);
+            const y2 = centerY + radius * Math.sin(endRad);
+            clipPathPoints += `, ${x2}% ${y2}%`;
+            
+            return clipPathPoints;
+        }
+
+        // Create the text element for a wheel segment
+        function createSegmentText(quest, index, anglePerSegment) {
+            const textElement = document.createElement('div');
+            textElement.className = 'segment-text';
+            textElement.textContent = quest.description;
+            
+            // Position text in the middle of the segment
+            const startAngle = (index * anglePerSegment) - 90;
+            const midAngle = startAngle + (anglePerSegment / 2);
+            const textDistance = CONFIG.WHEEL.TEXT_DISTANCE;
+            const textX = 50 + textDistance * Math.cos((midAngle * Math.PI) / 180);
+            const textY = 50 + textDistance * Math.sin((midAngle * Math.PI) / 180);
+            
+            textElement.style.left = `${textX}%`;
+            textElement.style.top = `${textY}%`;
+            textElement.style.transform = `translate(-50%, -50%) rotate(${midAngle}deg)`;
+            
+            // Dynamic font sizing based on text length and number of segments
+            const fontSize = calculateDynamicFontSize(quest.description, quests.length);
+            textElement.style.fontSize = fontSize + 'px';
+            textElement.style.width = CONFIG.WHEEL.TEXT_WIDTH + 'px';
+            textElement.style.whiteSpace = 'normal';
+            textElement.style.overflow = 'hidden';
+            textElement.style.wordBreak = 'break-word';
+            
+            return textElement;
+        }
+
+        // Calculate dynamic font size based on text length and number of segments
+        function calculateDynamicFontSize(text, numSegments) {
+            const textLength = text.length;
+            const baseFontSize = Math.max(8, CONFIG.WHEEL.BASE_FONT_SIZE - numSegments);
+            const lengthPenalty = Math.max(0, textLength - 30) * 0.1;
+            return Math.max(CONFIG.WHEEL.MIN_FONT_SIZE, baseFontSize - lengthPenalty);
         }
 
         // Initialize wheel on page load
         createWheel();
         
         // Add click functionality to wheel segments
-        function addSegmentClickListeners() {
+        function initializeSegmentInteractions() {
             const segments = document.querySelectorAll('.wheel-segment');
             segments.forEach((segment, index) => {
-                segment.addEventListener('click', (e) => {
-                    if (isSpinning) return; // Don't allow clicks while spinning
+                const handleActivation = (e) => {
+                    if (isSpinning) return; // Don't allow activation while spinning
                     e.stopPropagation();
                     showResultModal(quests[index]);
+                };
+
+                segment.addEventListener('click', handleActivation);
+                
+                // Add keyboard support for accessibility
+                segment.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleActivation(e);
+                    }
                 });
                 
                 // Add touch support for mobile
@@ -1087,7 +1043,7 @@
         }
         
         // Match button width to title width for symmetry
-        function matchButtonWidth() {
+        function synchronizeButtonLayout() {
             const title = document.querySelector('.page-title');
             const button = document.querySelector('.spin-button');
             if (title && button) {
@@ -1097,8 +1053,8 @@
         }
         
         // Set width on load and resize
-        window.addEventListener('load', matchButtonWidth);
-        window.addEventListener('resize', matchButtonWidth);
+        window.addEventListener('load', synchronizeButtonLayout);
+        window.addEventListener('resize', synchronizeButtonLayout);
 
         spinButton.addEventListener('click', spinWheel);
 
@@ -1114,14 +1070,12 @@
             segments.forEach(segment => segment.classList.add('disabled'));
             
             // Generate random spin (3-6 full rotations + weighted selection)
-            const minSpins = 2;
-            const maxSpins = 5;
-            const spins = Math.random() * (maxSpins - minSpins) + minSpins;
+            const spins = Math.random() * (CONFIG.SPIN.MAX_ROTATIONS - CONFIG.SPIN.MIN_ROTATIONS) + CONFIG.SPIN.MIN_ROTATIONS;
             
-            // Weighted selection: give partner choice quest (index 4) higher probability
+            // Weighted selection: give partner choice quest higher probability
             let selectedIndex;
-            const partnerChoiceIndex = 4; // Index of the "[PARTNER CHOICE]" quest
-            const partnerChoiceWeight = 0.22; // 22% chance for partner choice
+            const partnerChoiceIndex = CONFIG.SPIN.PARTNER_CHOICE_INDEX;
+            const partnerChoiceWeight = CONFIG.SPIN.PARTNER_CHOICE_WEIGHT;
             const otherQuestWeight = (1 - partnerChoiceWeight) / (quests.length - 1);
             
             const random = Math.random();
@@ -1162,16 +1116,16 @@
                 
                 // Add a little celebration effect
                 confetti();
-            }, 4000);
+            }, CONFIG.SPIN.DURATION);
         }
 
         function confetti() {
             // Simple confetti effect using emojis
-            const emojis = ['🎉', '🎊', '✨', '🌟', '💫'];
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < CONFIG.CONFETTI.COUNT; i++) {
                 setTimeout(() => {
-                    createConfettiPiece(emojis[Math.floor(Math.random() * emojis.length)]);
-                }, i * 100);
+                    const randomEmoji = CONFIG.CONFETTI.EMOJIS[Math.floor(Math.random() * CONFIG.CONFETTI.EMOJIS.length)];
+                    createConfettiPiece(randomEmoji);
+                }, i * CONFIG.CONFETTI.DELAY);
             }
         }
 
@@ -1198,7 +1152,7 @@
             // Remove the element after animation
             setTimeout(() => {
                 document.body.removeChild(confettiPiece);
-            }, 3000);
+            }, CONFIG.CONFETTI.DURATION);
         }
 
         // Modal functions
@@ -1211,10 +1165,8 @@
             if (quest.bonus) {
                 modalHTML += `<div class="quest-modal-bonus">BONUS: ${quest.bonus.replace(/\n/g, '<br>')}</div>`;
             }
-            const escapedDescription = quest.description.replace(/`/g, '\\`').replace(/'/g, "\\'");
-            const escapedExtraInfo = quest.extraInfo ? quest.extraInfo.replace(/`/g, '\\`').replace(/'/g, "\\'") : null;
-            const escapedBonus = quest.bonus ? quest.bonus.replace(/`/g, '\\`').replace(/'/g, "\\'") : null;
-            modalHTML += `<button class="quest-modal-copy-quest-button" onclick="copyQuestText('${quest.emoji}', \`${quest.modality}\`, \`${escapedDescription}\`, ${escapedExtraInfo ? `\`${escapedExtraInfo}\`` : 'null'}, ${escapedBonus ? `\`${escapedBonus}\`` : 'null'})">Copy Prompt</button>`;
+            const escaped = quest.getEscapedStrings();
+            modalHTML += `<button class="quest-modal-copy-quest-button" onclick="copyQuestUsingHelper(${quests.indexOf(quest)})">Copy Prompt</button>`;
             modalContent.innerHTML = modalHTML;
             modalOverlay.classList.add('show');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
@@ -1238,6 +1190,12 @@
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
 
+        function copyQuestUsingHelper(questIndex) {
+            const quest = quests[questIndex];
+            const formattedText = quest.getFormattedText();
+            copyToClipboard(formattedText);
+        }
+
         function copyQuestText(emoji, modality, description, extraInfo, bonus) {
             let formattedText = `Your TextQuest is:\n\n${emoji} [${modality}]\n\n${description}`;
             
@@ -1249,17 +1207,20 @@
                 formattedText += `\n\nBONUS: ${bonus}`;
             }
             
-            // Use the modern clipboard API if available
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(formattedText).then(() => {
+            copyToClipboard(formattedText);
+        }
+        
+        async function copyToClipboard(text) {
+            try {
+                if (navigator.clipboard?.writeText) {
+                    await navigator.clipboard.writeText(text);
                     showCopyFeedback();
-                }).catch((err) => {
-                    console.error('Failed to copy text: ', err);
-                    fallbackCopyText(formattedText);
-                });
-            } else {
-                // Fallback for older browsers or non-secure contexts
-                fallbackCopyText(formattedText);
+                    return true;
+                }
+                return fallbackCopyText(text);
+            } catch (error) {
+                console.warn('Copy failed:', error);
+                return fallbackCopyText(text);
             }
         }
 
@@ -1294,7 +1255,7 @@
                 setTimeout(() => {
                     copyButton.textContent = originalText;
                     copyButton.classList.remove('copied');
-                }, 2000);
+                }, CONFIG.FEEDBACK.COPY_TIMEOUT);
             }
         }
 
