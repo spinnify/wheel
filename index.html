@@ -699,11 +699,7 @@
         howToPlay += '👤 🔄 👤🎯\nPlayers take turns completing short, accessible challenges (quests) designed to be silly, reflective, or otherwise fun!\n\n';
         howToPlay += '🎲👈👉🤔✅\nPlayers can either (1) spin the wheel to receive quest assignments or (2) choose them manually by clicking on wheel segments and selecting their preferences.\n\n';
         howToPlay += 'Copyright 2025, Spinnify';
-
-        // new Quest('📸', 'Share a photo of the inside your fridge—what is your favorite item & why?', null, 'What is your least favorite item?'),
-        // new Quest('🎥', 'Share one or two memes/shorts that you find especially funny.'),
-        // new Quest('🎥', 'Make a 30-sec music video using only facial muscles for dancing.', 'Play a fun song in the background and let whatever embarrassing movements/expressions happen! 🤪'),
-        
+    
         const quests = [
             new Quest(
                 '🗣️', 
@@ -746,7 +742,7 @@
                 // extraInfo
                 null, 
                 // bonus
-                '🗣️ How would you describe your sense of humor? | What are the kinds of things that get you laughing the hardest?'
+                '🗣️ How would you describe your sense of humor? || What are the kinds of things that get you laughing the hardest?'
             ),
 
             new Quest(
@@ -791,7 +787,7 @@
                 'Think about times you\'ve felt seen by, appreciated by, or otherwise connected to friends/others. What were they saying, sharing, or doing that induced this sensation?',
                 // bonus
                 '🗣️ Conversely, when you feel affinity/connectedness/etc. TOWARDS someone, what actions/expressions tend to come out of (or stay in) you? E.g.:\n\n'+
-                '1️⃣ Hugs, etc. (physical touch gestures)\n2️⃣ Explicitly expressed affirmations\n3️⃣ General warmth/friendliness/smiling without explicitly expressed affirmations\n'+
+                '1️⃣ Hugs, etc. (physical touch gestures)\n2️⃣ Explicitly expressed affirmations\n3️⃣ General warmth/friendliness without explicitly expressed affirmations\n'+
                 '4️⃣ Playfulness in the form of teasing/sarcasm (gentle or even cruel)\n5️⃣ Inclination for symbolic tokens of appreciation (service, gifting, etc.)\n'+
                 '6️⃣ Plain ol\' wanting to share time with/hang around someone—even if in silence'
             ),
@@ -800,7 +796,7 @@
                 '📸',
                 'Photo',
                 // description
-                'Share a random, out-of-pocket, or embarrassing thing from your camera roll and never talk about it again.',
+                'Share a random, out-of-pocket, or embarrassing pic/vid your camera roll and never talk about it again.',
                 // extraInfo
                 'Your game partner will live in confusion for the rest of their life... muahahaha 😈',
                 // bonus
@@ -835,7 +831,7 @@
                 // extraInfo
                 null,
                 // bonus
-                '🗣️ Explain any background/context as needed. | What is it about the video(s) that is so joy-sparking/special to you?'
+                '🗣️ Explain any background/context as needed. || What is it about the video(s) that is so joy-sparking/special to you?'
             ),
 
             new Quest(
@@ -844,7 +840,7 @@
                 // description
                 'With your game partner, see who can take the silliest photo in the next 48 hours.', 
                 // extraInfo
-                '🤝 Although your partner is required to participate, this still only counts as your turn. After this quest, your partner will take their next turn as normal.',
+                '🤝 Although your partner is required to participate, this quest only counts as your turn. After this, your partner will take their next turn as normal.',
                 // bonus
                 '🧑‍⚖️ Get a 3rd-party judge involved; the winner gets to give the loser a (kind/reasonable) dare.'
             ),
@@ -857,18 +853,30 @@
                 // extraInfo
                 'The goofier the haiku/voice used, the better!', 
                 // bonus
-                '🗣️ Add any prelude/post-commentary as needed. | In general, how do you naturally react to or express frustration (e.g., stuffing it down/disassociating, finding someone to vent to, escaping to a comfort place/behavior/food, etc)? How do you wish you reacted instead?'
+                '🗣️ Add any prelude/post-commentary as needed. || In general, how do you naturally react to or express frustration (e.g., stuffing it down/disassociating, finding someone to vent to, escaping to a comfort place/behavior/food, etc)? How do you wish you reacted instead?'
             ),
+
+            new Quest(
+                '🗣️',
+                'Voice Memo',
+                // description
+                'What is one (or more) thing(s) that your game partner doesn\'t/might not know about you?', 
+                // extraInfo
+                'It could be anything: a superficial/random thing or even a more pithy/core trait or event in your life.\n\nE.g., what is something that others might see as a nifty hobby/experience/random fact of yours that has just never come up in your interactions?', 
+                // bonus
+                '🗣️ If applicable: what is something that your partner does not, but PROBABLY SHOULD know? That is, given the nature of your relationship, are there any things that might be USEFUL to disclose?'
+            ),
+
 
             new Quest(
                 '📸',
                 'Photo',
                 // description
-                'Share 1-3 fictional (cartoon, movie, etc.) characters that your game partners reminds you of.', 
+                'Share 1-3 fictional (cartoon, movie, etc.) characters that your game partner reminds you of.', 
                 // extraInfo
                 null, 
                 // bonus
-                '🗣️ Justify you choice(s). What is it about each character that they embody?'
+                '🗣️ Why and in what way(s) do they remind you of each character?'
             ),
 
             new Quest(
@@ -881,17 +889,6 @@
                 // bonus
                 null
             ),
-
-            // new Quest(
-            //     '🗣️',
-            //     'Voice Memo',
-            //     // description
-            //     'Besides you, who is the goofiest member of your family (or some other core social group)? In what way(s) are they goofy?', 
-            //     // extraInfo
-            //     null, 
-            //     // bonus
-            //     '🗣️ What is a fun memory that exemplifies this goofiness? How does this compare/contrast to your flavor of goofiness?'
-            // ),
 
             new Quest(
                 '🎷',
@@ -925,29 +922,44 @@
                 // bonus
                 '📅 Make this be a photo that you take in the next 24 hours.'
             ),
+
+            // new Quest(
+            //     '🗣️',
+            //     'Voice Memo',
+            //     // description
+            //     'Besides you, who is the goofiest member of your family (or some other core social group)? In what way(s) are they goofy?', 
+            //     // extraInfo
+            //     null, 
+            //     // bonus
+            //     '🗣️ What is a fun memory that exemplifies this goofiness? How does this compare/contrast to your flavor of goofiness?'
+            // ),
+            // new Quest('📸', 'Share a photo of the inside your fridge—what is your favorite item & why?', null, 'What is your least favorite item?'),
+            // new Quest('🎥', 'Share one or two memes/shorts that you find especially funny.'),
+            // new Quest('🎥', 'Make a 30-sec music video using only facial muscles for dancing.', 'Play a fun song in the background and let whatever embarrassing movements/expressions happen! 🤪'),
         ];
         
         // Colors for the segments (will cycle if more segments than colors)
         const colors = [
-            '#ff7675',
-            '#feca57',
-            '#7f4de3',
-            '#54a0ff',
-            '#a29bfe',
-            '#fd79a8',
             '#ff6b6b',
-            '#5f5fc9',
+            '#8750e6',
+            '#fd79a8',
+            '#ffce47',
             '#4ecdc4',
             '#45b7d1',
+            '#ff7675',
+            '#6f50d4',
+            '#a29bfe',
             '#ff9ff3',
+            '#edd377',
             '#96ceb4',
             '#74b9ff',
-            '#4369b5',
             '#e17055',
-            '#edd377',
+            '#4369b5',
+            '#F1B659',
+            '#EB9BBA',
+            '#54a0ff',
             '#00cec9',
             '#00b894',
-            '#eda6d3',
         ];
         
         let isSpinning = false;
@@ -1101,11 +1113,31 @@
             const segments = document.querySelectorAll('.wheel-segment');
             segments.forEach(segment => segment.classList.add('disabled'));
             
-            // Generate random spin (3-6 full rotations + random angle)
+            // Generate random spin (3-6 full rotations + weighted selection)
             const minSpins = 2;
             const maxSpins = 5;
             const spins = Math.random() * (maxSpins - minSpins) + minSpins;
-            const finalAngle = Math.random() * 360;
+            
+            // Weighted selection: give partner choice quest (index 4) higher probability
+            let selectedIndex;
+            const partnerChoiceIndex = 4; // Index of the "[PARTNER CHOICE]" quest
+            const partnerChoiceWeight = 0.22; // 22% chance for partner choice
+            const otherQuestWeight = (1 - partnerChoiceWeight) / (quests.length - 1);
+            
+            const random = Math.random();
+            if (random < partnerChoiceWeight) {
+                selectedIndex = partnerChoiceIndex; // Partner choice quest
+            } else {
+                // Select from other quests
+                const adjustedRandom = (random - partnerChoiceWeight) / (1 - partnerChoiceWeight);
+                selectedIndex = Math.floor(adjustedRandom * (quests.length - 1));
+                if (selectedIndex >= partnerChoiceIndex) selectedIndex++; // Skip the partner choice index
+            }
+            
+            // Calculate angle to land on selected quest
+            const segmentAngle = 360 / quests.length;
+            const targetAngle = selectedIndex * segmentAngle + (segmentAngle / 2);
+            const finalAngle = (360 - targetAngle) % 360;
             const totalRotation = (spins * 360) + finalAngle;
             
             currentRotation += totalRotation;
@@ -1115,10 +1147,7 @@
             
             // Calculate result after spin completes
             setTimeout(() => {
-                const normalizedAngle = (360 - (currentRotation % 360)) % 360;
-                const segmentAngle = 360 / quests.length;
-                const segmentIndex = Math.floor(normalizedAngle / segmentAngle);
-                const selectedQuest = quests[segmentIndex];
+                const selectedQuest = quests[selectedIndex];
                 
                 // Show result in modal
                 showResultModal(selectedQuest);
